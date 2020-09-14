@@ -610,8 +610,7 @@ class PaypalExpressTest < Test::Unit::TestCase
     @gateway.expects(:ssl_post).returns(response_with_error)
     response = @gateway.setup_authorization(100,
       return_url: 'http://example.com',
-      cancel_return_url: 'http://example.com'
-    )
+      cancel_return_url: 'http://example.com')
     assert_equal '10736', response.params['error_codes']
   end
 
@@ -619,8 +618,7 @@ class PaypalExpressTest < Test::Unit::TestCase
     @gateway.expects(:ssl_post).returns(response_with_duplicate_errors)
     response = @gateway.setup_authorization(100,
       return_url: 'http://example.com',
-      cancel_return_url: 'http://example.com'
-    )
+      cancel_return_url: 'http://example.com')
 
     assert_equal '10736', response.params['error_codes']
   end
@@ -629,8 +627,7 @@ class PaypalExpressTest < Test::Unit::TestCase
     @gateway.expects(:ssl_post).returns(response_with_errors)
     response = @gateway.setup_authorization(100,
       return_url: 'http://example.com',
-      cancel_return_url: 'http://example.com'
-    )
+      cancel_return_url: 'http://example.com')
 
     assert_equal %w[10736 10002], response.params['error_codes'].split(',')
   end
